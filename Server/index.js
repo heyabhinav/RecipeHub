@@ -23,6 +23,10 @@ app.use(function(req, res, next){
     next();
 })
 
+app.get('/', (req, res) => {
+    res.send('Server Running');
+});
+
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
     console.log('Login request:', { username, password });
