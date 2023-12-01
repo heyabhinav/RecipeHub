@@ -5,6 +5,14 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
+app.use(cors(
+    {
+        origin: [""],
+        methods: ["POST", "GET"],
+        credentials: true
+    }
+));
+
 app.use(router);
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
@@ -20,6 +28,7 @@ app.post('/login', (req, res) => {
     console.log('Login request:', { username, password });
     if (username === 'admin' && password === 'admin') {
         res.json({ success: true, message: 'Login successful' });
+        loggedin = true;
     } else {
         res.json({ success: false, message: 'Incorrect username or password' });
     }
